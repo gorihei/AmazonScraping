@@ -19,7 +19,7 @@ class AmazonScraping:
 
     def __del__(self):
         # webdriver終了
-        if self.driver != None:
+        if hasattr(self, 'driver') == True and self.driver != None:
             self.driver.quit()
 
     def set_url(self, url):
@@ -34,7 +34,7 @@ class AmazonScraping:
 
     def get_productname(self):
         elem = self.soup.find(id='productTitle')
-        if(elem):
+        if elem is not None:
             return str.strip(elem.text)
         else:
             return ''
