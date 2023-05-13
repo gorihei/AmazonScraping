@@ -33,10 +33,14 @@ class AmazonScraping:
         return self.driver.page_source
 
     def get_productname(self):
-        return str.strip(self.soup.find(id='productTitle').string)
+        elem = self.soup.find(id='productTitle')
+        if(elem):
+            return str.strip(elem.text)
+        else:
+            return ''
 
     def get_price(self):
-        div = self.soup.find('div', id='corePrice_feature_div')
+        div = self.soup.find('div', id='corePriceDisplay_desktop_feature_div')
         span = div.find('span', class_='a-price-whole')
 
         if span == None:

@@ -43,7 +43,12 @@ for url in urls:
 
     # 商品名
     map[url]['商品名'] = amazon.get_productname()
-    print(map[url]['商品名'])
+    if(map[url]['商品名'] != ''):
+        print(map[url]['商品名'])
+    else:
+        print('ページが見つかりませんでした。URL：' + url)
+        map.pop(url)
+        continue
 
     # 値段
     map[url]['価格'] = amazon.get_price()
